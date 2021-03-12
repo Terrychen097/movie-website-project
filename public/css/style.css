@@ -1,0 +1,234 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+div{
+  display: block;
+}
+/* Main page of header */
+.maxWidth{
+  width: 100%;
+  max-width: 1364px;
+  min-width: 768px;
+  margin: auto;
+}
+
+.right-side{
+    margin-left: 8em;
+}
+
+.top-bar{
+    display: flex;
+    padding-top: 6px;
+    /* background-color: #fff;  */
+    width: 100%;
+}
+
+.linking ul li{
+    display: inline-flex;
+    margin-right: 2.5em;
+    font-size: 1.2em;
+    text-transform: uppercase;
+
+}
+
+.linking{
+   
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.5;
+}
+
+.linking a{
+    color: grey;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+.linking>ul>li:hover{
+    border-bottom: 1px solid black;    
+}
+
+.linking a:hover{
+   color: black;    
+}
+
+.right-side li:first-child{
+    margin-right: 7em;
+    font-size: 30px;
+    font-family: "Ballet";
+}
+
+.footer{
+    border-top: 1px solid;
+    margin-top: 4em;
+    margin-bottom: 3em;
+    color: rgb(5, 10, 83);
+}
+
+.footer-link{
+  margin-top: 9px;
+  margin-left: 8px;
+}
+
+/* index */
+.imageController{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+#carouselExampleIndicators{
+    display: flex;
+    margin: 0 auto;
+    margin-top: auto;
+    width: 70%;
+    height: 400px;
+}
+
+/* feature movie and Tv show */
+.feature-block{
+  padding: 19px;
+  border-bottom: 1px solid rgb(151, 151, 151);
+}
+.movie-section{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-family: "Ballet";
+}
+
+.movies{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.featured-movie-img{
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  margin: 10px;
+}
+
+.featured-movie-img img{
+  width: 100%;
+  height: 100%;
+}
+
+
+
+/* product-list */
+.product-list{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.products{
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  margin: 8px;
+}
+
+.products img {
+  width: 100%;
+  height: 100%;
+}
+
+.centered{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.movieTitle{
+  color: rgb(34, 86, 163);
+  font-family: "Ballet";
+  font-size: 17px;
+}
+
+
+
+/* product details */
+.detail-container{
+  margin-bottom: 2em;
+  font-family: "Ballet";
+  font-size: 20px;
+}
+.context img{
+  float: left;
+  max-width: 30%;
+  max-height: 30%;
+  width: 100%;
+  height: 100%;
+  margin-right: 40px;
+}
+
+.detail-big{
+  margin:auto;
+  width: 100%;
+  padding-top: 70px;
+}
+
+.d-block{
+
+  max-width: 100%;
+  max-height: 400px;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+/* registration page */
+#wrapper-top {
+    flex: 2;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    font-size: 1.5em;
+  }
+  
+  #wrapper-bottom {
+    flex: 8;
+  }
+  
+  #wrapper-top-right a:hover {
+    color: lightskyblue;
+    border-bottom: 1px solid skyblue;
+  }
+  form {
+    margin-top: 2em;
+    max-width: auto;
+    min-width: auto;
+  
+    display: grid;
+    grid-gap: 15px;
+  }
+  
+  form label {
+    font-size: 1.2em;
+  }
+  
+  form input {
+    padding: 0.4px;
+    font-size: 1.1em;
+  }
+
+
+  /* sign in page */
+
+  .sign-box{
+   margin-left: 200px ;
+   margin-right: 500px;
+  }
+
+  .footer-con{
+    margin-bottom: 19em;
+  }

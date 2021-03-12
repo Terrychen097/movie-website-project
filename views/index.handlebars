@@ -1,0 +1,77 @@
+<section>
+    {{!-- Bootstrap slider--}}
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="img\Avengers.png" class="rounded mx-auto d-block imageController" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="img\Alita.png" class="img-fluid" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="img\s.jpg" class="img-fluid" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    {{!-- feature movie--}}
+    <div class="featured-movie">
+        <div class="feature-block"></div>
+        <div class="movie-section"><a href="/product">Feature Film</a></div>
+        <div class="movies">
+        {{#each feature}}
+            <div class="featured-movie-img">
+                <img src="/img/{{this}}" alt="Snow">
+            </div>
+        {{/each}}
+        </div>
+    </div>
+
+    {{!-- feature Tv show--}}
+    <div class="featured-movie">
+        <div class="feature-block"></div>
+        <div class="movie-section"><a href="/product">Feature Tv Show</a></div>
+        <div class="movies">
+        {{#each tvFeatured}}
+            <div class="featured-movie-img">
+                <a href="{{products}}">
+                <img src="/img/{{this}}" alt="Snow"></a>
+            </div>
+        {{/each}}
+        </div>
+    </div>
+
+{{!-- content --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>

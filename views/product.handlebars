@@ -1,0 +1,22 @@
+<section>
+     <div class="product-list">
+          {{#each products}}
+          <div class="products">
+               <a href="/products/{{this.id}}"><div class="movieTitle">{{this.title}}</div>
+                    <img src="/img/{{this.imgPath}}" alt="pic">
+               </a>
+          </div>
+
+          {{/each}}
+
+
+          {{#each tvShow}}
+          <div class="products">
+               <a href="/products/{{this.id}}"><div class="movieTitle">{{this.title}}</div>
+                    <img src="/img/{{this.imgPath}}" alt="pic">
+               </a>
+          </div>
+
+          {{/each}}
+     </div>
+</section>

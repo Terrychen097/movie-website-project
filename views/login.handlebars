@@ -1,34 +1,26 @@
 <section>
-  <div class="sign-box">
-<div class="container w3-container w3-padding-32">
-      <div id="wrapper-bottom">
-        <div class="container">
-          <form action="/reset" method="post">
-            <label for="user-email">User Email</label>
-            <input
-              id="user-email"
-              class="form-control"
-              type="email"
-              placeholder="student@myseneca.ca"
-              tabindex="1"
-            />
-
-            <label for="password">Password</label>
-            <input
-              id="password"
-              class="form-control"
-              type="password"
-              placeholder=""
-              tabindex="2"
-            />
-
-            <div id="button">
-              <button class="btn btn-primary" type="submit">Sgin in</button>
+<div class="row">
+    <div class="col-md-6 mx-auto p-0">
+      <form action="/login" method="post">
+        <div class="card">
+            <div class="login-box">
+                <div class="login-snip"> <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label>
+                    <div class="login-space">
+                        <div class="login">
+                            <div class="group"> <label for="user" class="label">Username</label> <input id="user" type="text" name="userName" class="input" placeholder="Enter your username"> </div>
+                            <div class="group"> <label for="pass" class="label">Password</label> <input id="pass" type="password" name="password" class="input" data-type="password" placeholder="Enter your password"> </div>
+                            <div class="group"> <input type="submit" class="button" value="Sign In"> </div>
+                            <div class="hr"></div>
+                        </div>
+                    {{#each errorMassages}}
+                    <div class="errors">{{this}}</div>
+                    {{/each}}
+                        </div>
+                    </div>
+                </div>
             </div>
-          </form>
+            </form>
         </div>
-      </div>
     </div>
-    </div>
-    <div class="footer-con"></div>
+</div>
 </section>

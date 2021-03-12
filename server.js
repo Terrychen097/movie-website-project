@@ -86,7 +86,6 @@ app.post("/registration", (req, res) => {
     }
 
     if (errors.length > 0) {
-        console.log(`${console.error.length}`)
         res.render("registration", {
             title: "registration Page",
             errorMassages: errors
@@ -117,7 +116,26 @@ app.get("/login", (req, res) => {
     })
 });
 
+app.post("/login",(req,res) =>{
+    const errors = [];
 
+    if (req.body.userName == "") {
+        errors.push("You must enter a user email");
+    }
+
+    if (req.body.password == "") {
+        errors.push("You must enter a password");
+    }
+
+    if (errors.length > 0) {
+        res.render("login", {
+            title: "login Page",
+            errorMassages: errors
+        });
+    }else{
+        req.redirect("/");
+    }
+});
 
 const PORT = 3000;
 app.listen(PORT, () => {

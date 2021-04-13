@@ -1,6 +1,8 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+require('dotenv').config({ path: 'config/keys.env' });
 
 //imported module 
 const movieDB = require("./models/MovieDB.js");
@@ -137,8 +139,14 @@ app.post("/login",(req,res) =>{
     }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const PORT =process.env.PORT;
+app.listen(process.env.PORT, () => {
 
     console.log(`Web Server is up and running on PORT ${PORT}`);
+    mongoose.connect(process.env.MONGO_DB_URL_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
+    .then(()=>{
+        console.log(`Connected to MongoDB`)
+
+    })
+    .catch((err=>console.log(`Error: ${err}`)));
 });

@@ -2,13 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    firstName :
-    {
-        type:String,
-        required:true
-    },
-
-    lastName :
+    phoneNu :
     {
         type:String,
         required:true
@@ -20,17 +14,21 @@ const userSchema = new Schema({
         required:true
 
     },
-    username:
-    {
-        type:String,
-        required:true
-
-    },
     password:
     {
         type:String,
         required:true
 
+    },
+    name:
+    {
+        type:String,
+        required:true
+    },
+    desc:
+    {
+        type:String,
+        required:true 
     }
 });
 

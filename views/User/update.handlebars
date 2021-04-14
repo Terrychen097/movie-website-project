@@ -1,0 +1,20 @@
+<form action="/" method="post">
+<label for="email">User Email</label>
+          <input id="email" name="email" class="form-control" type="email" placeholder="student@myseneca.ca"
+            tabindex="1" value="{{filteredUser.email}}"/>
+
+          <label for="password">Password</label>
+          <input id="password" name="password" class="form-control" type="text" placeholder="xxxx xxxx" tabindex="2" />
+
+          <label for="name">Full Name</label>
+          <input id="name" name="name" class="form-control" type="text" placeholder="61 Main street"
+            tabindex="3" value="{{filteredUser.name}}"/>
+
+          <label for="phoneNumber">Phone Number</label>
+          <input id="phoneNu" name="phoneNu" class="form-control" type="phoneNumber" placeholder="123-123-1234"
+            tabindex="4" value="{{filteredUser.phoneNu}}"/>
+
+            <div id="button">
+            <input class="btn btn-primary" type="submit" value="update">
+          </div>
+</form>

@@ -18,7 +18,7 @@ exports.authenticate = (req, res, next) => {
 
     const errors = [];
 
-    if (req.body.userName === "") {
+    if (req.body.name === "") {
         errors.push("You must enter a user email");
     }
 
@@ -33,16 +33,17 @@ exports.authenticate = (req, res, next) => {
         });
     } else {
         userModel.findOne({
-                name: req.body.name
+                email: req.body.email
             })
             .then(user => {
                 if (user) {
+                    console.log(`${user.password}`);
                     bcrypt.compare(req.body.password, user.password)
                         .then(hashVal => {
                             if (hashVal) {
                                 req.session.user = user;
 
-                                res.redirect(`/users/${user_id}`);
+                                res.redirect(`/users/`);
 
                             } else {
                                 errors.push("Your username and/or passwrod is incorrect");

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const userModel = require("../models/User.js");
-const { route } = require("./General.js");
+const httpProcess = require("../middleware/httpProcess");
 
 //route for regisration
 router.get("/register", (req, res) => {
@@ -13,7 +13,7 @@ router.get("/register", (req, res) => {
 });
 
 
-router.post("/register", (req, res) => {
+router.post("/register",(req, res) => {
 
     const errors = [];
 
@@ -39,6 +39,25 @@ router.post("/register", (req, res) => {
             errorMassages: errors
         });
     } else {
+
+
+        const newUser = {
+            email : req.body.email,
+            phoneNu : req.body.phoneNu,
+            name : req.body.name,
+            password : req.body.password,
+            desc : req.body.desc
+        }
+    
+        const user = new userModel(newUser);
+        user.save()
+          .then(user=>{
+    
+           res.redirect("/users");
+    
+          })
+          .catch(err=>console.log(`Error : ${err}`));
+
         const accountSid = 'ACda2f85c39b1d07cb4be1699802acac5c';
         const authToken = '020af0e9c7bf69e81ff18aff4740ba99';
         const client = require('twilio')(accountSid, authToken);
@@ -50,30 +69,14 @@ router.post("/register", (req, res) => {
                 to: `${req.body.phoneNu}`
             })
             .then(message => console.log(message.sid));
-        res.redirect("/");
+
     }
 
-    const newUser = {
-        email : req.body.email,
-        phoneNu : req.body.phoneNu,
-        name : req.body.name,
-        password : req.body.password,
-        desc : req.body.desc
-    }
-
-    const user = new userModel(newUser);
-    user.save()
-      .then(user=>{
-
-       res.redirect("/users")
-
-      })
-      .catch(err=>console.log(`Error : ${err}`));
 
 })
 
 
-
+//list user info
 router.get("/",(req,res)=>{
 
     userModel.find()
@@ -95,6 +98,7 @@ router.get("/",(req,res)=>{
 
 })
 
+//edit page and contain user data
 router.get("/:id",(req,res)=>{
 
     userModel.findById(req.params.id)
@@ -129,8 +133,8 @@ router.put("/:id",(req,res)=>{
     }
 
     userModel.updateOne({_id: req.params.id},newUser)
-    .then(()=>{
-        res.redirect("/users")
+    .then(user=>{
+        res.redirect("/users");
     })
     .catch(err=>console.log(`Error : ${err}`));
 })

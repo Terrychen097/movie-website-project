@@ -28,10 +28,10 @@ app.use(session({
     saveUninitialized: true
   }))
 
-
+app.use(httpProcessing);
 app.use("/",generalController);
 app.use("/users/",userController);
-app.use(httpProcessing);
+
 app.use("/auth/",authController);
 
 

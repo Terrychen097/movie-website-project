@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const bcrypt = require("bcryptjs");
 
 const userSchema = new Schema({
     phoneNu :
@@ -32,6 +33,22 @@ const userSchema = new Schema({
     }
 });
 
+
+userSchema.pre("save",function(next)
+{
+    bcrypt.genSalt(10)
+    .then((salt)=>{
+
+        bcrypt.hash(this.password,salt)
+        .then((encryptPassword)=>{
+            this.password = encryptPassword;
+            next();
+        })
+        .catch(err=>console.log(`Error : ${err}`));
+    })
+
+    .catch(err=>console.log(`Error : ${err}`));
+})
 
 const UserModel = mongoose.model('User', userSchema);
 module.exports = UserModel;

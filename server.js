@@ -3,11 +3,14 @@ const exphbs  = require('express-handlebars');
 require('dotenv').config({ path: 'config/keys.env' });
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
+const session = require('express-session');
 
-//imported module 
 
+//import middleware
 const generalController = require("./controllers/General.js");
 const userController = require("./controllers/User.js");
+const httpProcessing = require("./middleware/httpProcess.js");
+const authController = require("./controllers/Auth.js");
 
 const app = express();
 
@@ -18,11 +21,18 @@ app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({extended:false}));
 
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+  }))
+
+
 app.use("/",generalController);
-
 app.use("/users/",userController);
-
-
+app.use(httpProcessing);
+app.use("/auth/",authController);
 
 
 const PORT =process.env.PORT;

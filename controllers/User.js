@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const userModel = require("../models/User.js");
 const httpProcess = require("../middleware/httpProcess");
+const customizMiddleware = require("../middleware/customizedMiddleware.js");
+const authMiddleware = require("../middleware/Authentication.js");
+
 
 //route for regisration
 router.get("/register", (req, res) => {
@@ -75,7 +78,6 @@ router.post("/register",(req, res) => {
 
 })
 
-
 //list user info
 router.get("/",(req,res)=>{
 
@@ -98,8 +100,11 @@ router.get("/",(req,res)=>{
 
 })
 
+//route user to the login dashboard
+router.get("/dashboard/",authMiddleware.protectRoute,customizMiddleware.getUserDashboard);
+
 //edit page and contain user data
-router.get("/:id",(req,res)=>{
+router.get("/:id",authMiddleware.protectRoute,(req,res)=>{
 
     userModel.findById(req.params.id)
 

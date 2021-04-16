@@ -6,7 +6,7 @@ const AuthServers = require("../middleware/AuthService.js");
 router.get("/login", AuthServers.getLoginView);
 
 router.post("/login",AuthServers.authenticate);
-
+router.get("/logout",AuthServers.logout);
 
 
 module.exports = router;

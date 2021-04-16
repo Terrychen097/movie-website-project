@@ -2,6 +2,12 @@ const userModel = require("../models/User.js");
 const bcrypt = require("bcryptjs");
 
 
+exports.logout = (req,res,next)=>{
+
+    req.session.destroy();
+    res.redirect("/users");
+}
+
 exports.getLoginView = (req, res, next) => {
 
     res.render("User/login.handlebars");
@@ -12,13 +18,13 @@ exports.getLoginView = (req, res, next) => {
 
 exports.authenticate = (req, res, next) => {
 
-    const name = req.body.name;
+    const email = req.body.email;
     const password = req.body.password;
 
 
     const errors = [];
 
-    if (req.body.name === "") {
+    if (req.body.email === "") {
         errors.push("You must enter a user email");
     }
 
@@ -37,13 +43,12 @@ exports.authenticate = (req, res, next) => {
             })
             .then(user => {
                 if (user) {
-                    console.log(`${user.password}`);
                     bcrypt.compare(req.body.password, user.password)
                         .then(hashVal => {
                             if (hashVal) {
                                 req.session.user = user;
-
-                                res.redirect(`/users/`);
+                                console.log(`${user.password}`);
+                                res.redirect(`/users/dashboard`);
 
                             } else {
                                 errors.push("Your username and/or passwrod is incorrect");

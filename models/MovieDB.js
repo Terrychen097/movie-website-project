@@ -157,7 +157,7 @@ const movieDB = {
     {
         var all = this.products.concat(this.tvShows);
        
-    //  console.log(all);
+
 
       const productReturned=  all.find((product)=>{
 
@@ -175,7 +175,7 @@ const movieDB = {
         let productFeature = [];
         for(let i = 0; i < this.products.length; i++){
             if(this.products[i].featured === true){
-               productFeature.push(this.products[i].imgPath);
+               productFeature.push(this.products[i]);
             }
         }
         return productFeature;
@@ -185,7 +185,7 @@ const movieDB = {
         let tvFeature = [];
         for(let i = 0; i < this.tvShows.length; i++){
             if(this.tvShows[i].featured === true){
-                tvFeature.push(this.tvShows[i].imgPath);
+                tvFeature.push(this.tvShows[i]);
             }
         }
         return tvFeature;

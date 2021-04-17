@@ -30,6 +30,11 @@ const userSchema = new Schema({
     {
         type:String,
         required:true 
+    },
+    Admin:
+    {
+        type:Boolean,
+        default: false
     }
 });
 

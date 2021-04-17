@@ -43,7 +43,7 @@ app.use("/users/",userController);
 
 app.use("/auth/",authController);
 
-console.log("");
+
 
 const PORT =process.env.PORT;
 app.listen(process.env.PORT, () => {

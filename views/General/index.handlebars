@@ -39,7 +39,7 @@
         <div class="movies">
         {{#each feature}}
             <div class="featured-movie-img">
-                <img src="/img/{{this}}" alt="Snow">
+                <a href="/productsDescription/{{this.id}}"><img src="/img/{{this.imgPath}}" alt="Snow"></a>
             </div>
         {{/each}}
         </div>
@@ -52,8 +52,8 @@
         <div class="movies">
         {{#each tvFeatured}}
             <div class="featured-movie-img">
-                <a href="{{products}}">
-                <img src="/img/{{this}}" alt="Snow"></a>
+                <a href="/productsDescription/{{this.id}}">
+                <img src="/img/{{this.imgPath}}" alt="Snow"></a>
             </div>
         {{/each}}
         </div>

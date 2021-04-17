@@ -41,5 +41,13 @@ router.get("/products/:id", (req, res) => {
     })
 })
 
+//route from feature to description page
+router.get("/productsDescription/:id",(req,res)=>{
+
+    res.render("General/productsDescription.handlebars",{
+        product: movieDB.getAProduct(req.params.id),
+    })
+
+})
 
 module.exports = router;

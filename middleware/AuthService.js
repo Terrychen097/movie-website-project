@@ -47,11 +47,16 @@ exports.authenticate = (req, res, next) => {
                         .then(hashVal => {
                             if (hashVal) {
                                 req.session.user = user;
-                                console.log(`${user.password}`);
-                                res.redirect(`/users/dashboard`);
-
+                                console.log(`${user.Admin}`);
+                                if(user.Admin){
+                                    res.redirect("/users/admin.handlebars");
+                                }
+                                else{
+                                     res.redirect(`/users/dashboard`);
+                                }
+                               
                             } else {
-                                errors.push("Your username and/or passwrod is incorrect");
+                                errors.push("Your username and/or password is incorrect");
                                 res.render("User/login.handlebars", {
                                     title: "login Page",
                                     errorMassages: errors
@@ -61,7 +66,7 @@ exports.authenticate = (req, res, next) => {
 
                         .catch(err => console.log(`Error : ${err}`));
                 } else {
-                    errors.push("Your username and/or passwrod is incorrect");
+                    errors.push("Your username and/or password is incorrect");
                     res.render("User/login.handlebars", {
                         title: "login Page",
                         errorMassages: errors

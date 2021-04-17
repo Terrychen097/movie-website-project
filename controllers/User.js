@@ -5,6 +5,7 @@ const httpProcess = require("../middleware/httpProcess");
 const customizMiddleware = require("../middleware/customizedMiddleware.js");
 const authMiddleware = require("../middleware/Authentication.js");
 
+router.get("/admin/",authMiddleware.protectRoute,customizMiddleware.getAdminDashboard);
 
 //route for regisration
 router.get("/register", (req, res) => {
@@ -100,8 +101,10 @@ router.get("/",(req,res)=>{
 
 })
 
+
 //route user to the login dashboard
 router.get("/dashboard/",authMiddleware.protectRoute,customizMiddleware.getUserDashboard);
+
 
 //edit page and contain user data
 router.get("/:id",authMiddleware.protectRoute,(req,res)=>{

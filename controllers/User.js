@@ -4,6 +4,7 @@ const userModel = require("../models/User.js");
 const httpProcess = require("../middleware/httpProcess");
 const customizMiddleware = require("../middleware/customizedMiddleware.js");
 const authMiddleware = require("../middleware/Authentication.js");
+const AuthService = require("../middleware/AuthService.js");
 
 router.get("/admin/",authMiddleware.protectRoute,customizMiddleware.getAdminDashboard);
 

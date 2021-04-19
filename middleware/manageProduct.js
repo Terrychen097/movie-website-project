@@ -6,6 +6,7 @@ exports.listProduct = (req,res,next)=>{
     productModel.find()
     .then(product=>{
       const filteredProduct = product.map(product=>{
+        
         return{
             id : product._id,
             title : product.name,
@@ -13,7 +14,7 @@ exports.listProduct = (req,res,next)=>{
             picName : product.sPic.name
         }
       });
-console.log("ps")
+
       res.render("/products/",{
         filteredProduct         
       })

@@ -3,7 +3,7 @@
 
     <div id="wrapper-bottom">
       <div class="container">
-        <form action="/Product/addProduct" method="post" enctype="multipart/form-data">
+        <form action="/products/addProduct" method="post" enctype="multipart/form-data">
 
           <label for="name">Title</label>
           <input id="name" name="name" class="form-control" type="text" placeholder="student@myseneca.ca"
@@ -13,15 +13,15 @@
           <input id="category" name="category" class="form-control" type="text" placeholder="xxxx xxxx" tabindex="2" />
 
           <label for="rating">Rating</label>
-          <input id="rating" name="rating" class="form-control" type="number" placeholder="123-123-1234"
+          <input id="rating" name="rating" class="form-control"  placeholder="123-123-1234"
             tabindex="4" />
 
             <label for="rent">Rent</label>
-          <input id="rent" name="rent" class="form-control" type="number" placeholder="123-123-1234"
+          <input id="rent" name="rent" class="form-control"  placeholder="123-123-1234"
             tabindex="4" />
 
              <label for="price">Buy</label>
-          <input id="price" name="price" class="form-control" type="number" placeholder="123-123-1234"
+          <input id="price" name="price" class="form-control"  placeholder="123-123-1234"
             tabindex="4" />
 
              <label for="type">Type</label>
@@ -35,7 +35,7 @@
              <label>Large Poster</label>
           <input type="file" id="lPic" name="lPic" class="form-control" tabindex="4" accept="image/*"/>
 
-             <label for="desc">Large Poster</label>
+             <label for="desc">Description</label>
           <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Tell us about your problem"></textarea>
           {{#each errorMassages}}
           <div class="errors">{{this}}</div>

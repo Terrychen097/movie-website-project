@@ -3,19 +3,15 @@
      <h3>Movie</h3>
      <div class="product-list">
           {{#each filteredProduct}}
-    <p>
-        <a href="/products/{{this.id}}">Edit</a>
-        <a href="/products/{{this.id}}?method=delete">Delete</a>
-          <p>{{this.id}}</p>
-    </p>
-
-
           <div class="products">
-               <a href="/listProduct/{{this.id}}"><div class="movieTitle">{{this.title}}</div>
+               <a href="/products/{{this.id}}">Edit</a>
+               <a href="/products/{{this.id}}?method=delete">Delete</a>
+               <a href="/products/productDetail/{{this.id}}">
+                    <div class="movieTitle">{{this.title}}</div>
                     <img src="/uploads/{{this.sPic}}" alt="pic">
                </a>
           </div>
 
           {{/each}}
-    </div>
+     </div>
 </section>

@@ -41,7 +41,7 @@ app.use((req,res,next)=>{
 
 
 app.use(httpProcessing);
-//app.use("/",generalController);
+app.use("/",generalController);
 app.use("/users/",userController);
 app.use("/products/",productController);
 app.use("/auth/",authController);

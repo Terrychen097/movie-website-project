@@ -4,7 +4,21 @@
      <div class="product-list">
           {{#each filteredProduct}}
           <div class="products">
-               <a href="/cart/{{this.picName}}"><div class="movieTitle">{{this.title}}</div>
+               <a href="/products/productDetail/{{this.id}}"><div class="movieTitle">{{this.title}}</div>
+                    <img src="/uploads/{{this.sPic}}" alt="pic">
+               </a>
+          </div>
+
+          {{/each}}
+    </div>
+
+
+
+         <h3>TV Show</h3>
+     <div class="product-list">
+          {{#each filteredProduct}}
+          <div class="products">
+               <a href="/products/productDetail/{{this.id}}"><div class="movieTitle">{{this.title}}</div>
                     <img src="/uploads/{{this.sPic}}" alt="pic">
                </a>
           </div>

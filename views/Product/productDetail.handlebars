@@ -2,27 +2,28 @@
 
     <div class="detail-container">
         <div class="context">
-            <p> <img src="/img/{{product.imgPath}}" alt="pic">
-                Title : {{product.title}}
+            <p> <img src="/uploads/{{picFilter.sPic}}" alt="pic">
+                Title : {{picFilter.name}}
             </p>
+            <h6>{{picFilter.category}}      Stars:{{picFilter.rating}}{{picFilter.id}}</h6>
             <p>
-                Description : {{product.description}}
+                Description : {{picFilter.desc}}
 
             </p>
         </div>
 
 
-        <button class="btn btn-primary">
-            Rent $ {{product.price}}
-        </button>
+     <a href="/products/addCart/{{picFilter.id}}">  <button class="btn btn-primary">
+            Rent $ {{picFilter.price}}
+        </button></a> 
 
         <button class="btn btn-primary">
-            Buy $ {{product.buy}}
+            Buy $ {{picFilter.rent}}
         </button>
     </div>
 
     <div class="detail-big">
-        <img src="/img/{{product.imgBig}}" class="rounded mx-auto d-block" alt="...">
+        <img src="/uploads/{{picFilter.lPic}}" class="rounded mx-auto d-block" alt="...">
     </div>
 
 

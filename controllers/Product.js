@@ -4,12 +4,61 @@ const productModel = require("../models/Product.js");
 const path = require("path");
 const httpProcess = require("../middleware/httpProcess");
 const manageProduct = require("../middleware/manageProduct");
+const cartModel = require("../models/Cart.js");
 
+
+router.get("/addCart", (req, res) => {
+    console.log(`1${req.params.id}`)
+    res.render("Product/addCart");
+
+})
+
+router.get("/addCart/:id", (req, res) => {
+    productModel.findById(req.params.id)
+    .then((product)=>{
+    const {id, name, sPic, lPic , desc, category, rating, price, rent, type}  = product;
+
+        const cartFilter = {
+            id, name, sPic, lPic , desc, category, rating, price, rent, type
+        }
+//add cart
+        const cart = new cartModel(cartFilter);
+        cart.save()
+        .then(cart=>{
+            console.log(`1${cart.name}`)
+
+            cartModel.find()
+            .then(carts=>{
+                console.log(`2${carts.name}`)
+                const cartFilters = carts.map(cart=>{
+                    console.log(`3${cart.price}`)
+                    return{
+                        name : cart.name,
+                        id : cart._id,
+                        price : cart.price,
+                        sPic : cart.sPic,
+                        rent : cart.rent
+                    }
+                  });
+                
+            res.render("Product/addCart", {
+                cartFilters
+            })
+
+            })
+            .catch(err=>console.log(`Error : ${err}`));
+
+        })
+        .catch(err=>console.log(`Error : ${err}`));
+    })
+    .catch(err=>console.log(`Error : ${err}`));
+})
 
 
 router.get("/listProduct/",(req,res)=>{
     productModel.find()
     .then(products=>{
+
       const filteredProduct = products.map(product=>{
         return{
             id : product._id,
@@ -18,7 +67,6 @@ router.get("/listProduct/",(req,res)=>{
             picName : product.sPic.name
         }
       });
-      console.log("as")
       res.render("Product/listProduct",{
         filteredProduct         
       })
@@ -32,6 +80,29 @@ router.get("/addProduct", (req, res) => {
     res.render("Product/addProduct");
 
 })
+
+
+router.get("/productDetail/:id", (req, res) => {
+
+    productModel.findById(req.params.id)
+    .then((product)=>{
+    const {id, name, sPic, lPic , desc, category, rating, price, rent, type}  = product;
+
+        const picFilter = {
+            id, name, sPic, lPic , desc, category, rating, price, rent, type
+        }
+
+        res.render("Product/productDetail", {
+            picFilter
+        })
+
+    })
+    .catch(err=>console.log(`Error : ${err}`));
+
+
+})
+
+
 
 router.post("/addProduct", (req, res) => {
 
@@ -65,6 +136,11 @@ router.post("/addProduct", (req, res) => {
     if (req.files == null){
         errors.push("You must have a img");
     }
+    if (req.files.sPic.mimetype == "image/jpeg" || req.files.sPic.mimetype == "image/git" || req.files.sPic.mimetype == "image/png" ){}
+    else
+    {
+        errors.push("You must upload a jpg/git/png");
+    }
     if (errors.length > 0) {
         res.render("Product/addProduct", {
              errorMassages: errors
@@ -90,8 +166,8 @@ router.post("/addProduct", (req, res) => {
     product.save()
       .then((product)=>{
         
-        req.files.sPic.name = `pro_pic_${product.id}${path.parse(req.files.sPic.name).ext}`
-        req.files.lPic.name = `pro_pic_${product.id}${path.parse(req.files.lPic.name).ext}`
+        req.files.sPic.name = `pro_pic_1${product.id}${path.parse(req.files.sPic.name).ext}`
+        req.files.lPic.name = `pro_pic_2${product.id}${path.parse(req.files.lPic.name).ext}`
         req.files.sPic.mv(`public/uploads/${req.files.sPic.name}`)
         
         .then(()=>{
@@ -102,7 +178,7 @@ router.post("/addProduct", (req, res) => {
             .then(()=>{
                 req.files.lPic.mv(`public/uploads/${req.files.lPic.name}`)
                 .then(()=>{                               
-                res.redirect("/product/cart")
+                res.redirect("/products/")
                 })                
                 .catch(err=>console.log(`Error : ${err}`));
             })
@@ -121,13 +197,16 @@ router.get("/",(req,res)=>{
 
     productModel.find()
     .then(products=>{
-      const filteredProduct = products.map(product=>{
+        const filteredProduct = products.map(product=>{
+        //if(product.type ==="movie"){
         return{
             id : product._id,
             title : product.name,
             sPic : product.sPic,
-            picName : product.sPic.name
+            picName : product.sPic.name,
+            type : product.type
         }
+//}
       });
 
       res.render("Product/productDashboard",{
@@ -192,11 +271,18 @@ router.put("/:id",(req,res)=>{
     if (req.files == null){
         errors.push("You must have a img");
     }
+    if (req.files.sPic.mimetype == "image/jpeg" || req.files.sPic.mimetype == "image/git" || req.files.sPic.mimetype == "image/png" ){}
+    else
+    {
+        errors.push("You must upload a jpg/git/png");
+    }
     if (errors.length > 0) {
         res.render("Product/editProduct", {
              errorMassages: errors
         });
     }else{
+        req.files.sPic.name = `pro_pic_${req.params.id}${path.parse(req.files.sPic.name).ext}`
+        req.files.lPic.name = `pro_pic_${req.params.id}${path.parse(req.files.lPic.name).ext}`
     const newProduct = {
         name : req.body.name,
         desc : req.body.desc,
@@ -210,11 +296,7 @@ router.put("/:id",(req,res)=>{
     }
 
 
-    
-    req.files.sPic.name = `pro_pic_${req.params.id}${path.parse(req.files.sPic.name).ext}`
-    req.files.lPic.name = `pro_pic_${req.params.id}${path.parse(req.files.lPic.name).ext}`
     req.files.sPic.mv(`public/uploads/${req.files.sPic.name}`)
-    
     .then(()=>{
         productModel.updateMany({_id: newProduct._id},{
             sPic :  req.files.sPic.name,
@@ -222,6 +304,7 @@ router.put("/:id",(req,res)=>{
         })
         //upload picture
         .then(()=>{
+
             req.files.lPic.mv(`public/uploads/${req.files.lPic.name}`)
             .then(()=>{       
                 
@@ -229,18 +312,11 @@ router.put("/:id",(req,res)=>{
 
                 productModel.updateOne({_id: req.params.id},newProduct)
                 .then(user=>{
+
                          res.redirect("/products/listProduct");
                 })
                 .catch(err=>console.log(`Error : ${err}`));
 
-
-
-
-
-
-
-           
-          
             })                
             .catch(err=>console.log(`Error : ${err}`));
         })
@@ -264,7 +340,6 @@ router.delete("/:id",(req,res)=>{
     })
     .catch(err=>console.log(`Error : ${err}`));
 })
-
 
 
 module.exports = router;

@@ -20,7 +20,7 @@ const productScheme = new Schema({
     },
     rating:
     {
-        type:Number,
+        type:String,
         required:true
     },
     sPic:

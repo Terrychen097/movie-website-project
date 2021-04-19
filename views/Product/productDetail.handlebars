@@ -1,0 +1,30 @@
+<section>
+
+    <div class="detail-container">
+        <div class="context">
+            <p> <img src="/uploads/{{picFilter.sPic}}" alt="pic">
+                Title : {{picFilter.name}}
+            </p>
+            <h6>{{picFilter.category}}      Stars:{{picFilter.rating}}{{picFilter.id}}</h6>
+            <p>
+                Description : {{picFilter.desc}}
+
+            </p>
+        </div>
+
+
+     <a href="/products/addCart/{{picFilter.id}}">  <button class="btn btn-primary">
+            Rent $ {{picFilter.price}}
+        </button></a> 
+
+        <button class="btn btn-primary">
+            Buy $ {{picFilter.rent}}
+        </button>
+    </div>
+
+    <div class="detail-big">
+        <img src="/uploads/{{picFilter.lPic}}" class="rounded mx-auto d-block" alt="...">
+    </div>
+
+
+</section>

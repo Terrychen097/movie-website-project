@@ -1,0 +1,52 @@
+<section>
+  <div class="container w3-container w3-padding-32">
+
+    <div id="wrapper-bottom">
+      <div class="container">
+        <form action="/products/addProduct" method="post" enctype="multipart/form-data">
+
+          <label for="name">Title</label>
+          <input id="name" name="name" class="form-control" type="text" placeholder="student@myseneca.ca"
+            tabindex="1" />
+
+          <label for="category">Category</label>
+          <input id="category" name="category" class="form-control" type="text" placeholder="xxxx xxxx" tabindex="2" />
+
+          <label for="rating">Rating</label>
+          <input id="rating" name="rating" class="form-control"  placeholder="123-123-1234"
+            tabindex="4" />
+
+            <label for="rent">Rent</label>
+          <input id="rent" name="rent" class="form-control"  placeholder="123-123-1234"
+            tabindex="4" />
+
+             <label for="price">Buy</label>
+          <input id="price" name="price" class="form-control"  placeholder="123-123-1234"
+            tabindex="4" />
+
+             <label for="type">Type</label>
+          <input id="type" name="type" class="form-control" type="text" placeholder="123-123-1234"
+            tabindex="4" />
+
+             <label>Small Poster</label>
+          <input id="sPic" name="sPic" class="form-control" type="file" accept="image/*"
+            tabindex="4" />
+
+             <label>Large Poster</label>
+          <input type="file" id="lPic" name="lPic" class="form-control" tabindex="4" accept="image/*"/>
+
+             <label for="desc">Description</label>
+          <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Tell us about your problem"></textarea>
+          {{#each errorMassages}}
+          <div class="errors">{{this}}</div>
+          {{/each}}
+          <div id="button">
+            <input class="btn btn-primary" type="submit" value="submit">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+</section>

@@ -10,7 +10,7 @@ exports.logout = (req,res,next)=>{
 
 exports.getLoginView = (req, res, next) => {
 
-    res.render("User/login.handlebars");
+    res.render("User/login");
 
 };
 
@@ -18,8 +18,7 @@ exports.getLoginView = (req, res, next) => {
 
 exports.authenticate = (req, res, next) => {
 
-    const email = req.body.email;
-    const password = req.body.password;
+
 
 
     const errors = [];
@@ -33,7 +32,7 @@ exports.authenticate = (req, res, next) => {
     }
 
     if (errors.length > 0) {
-        res.render("User/login.handlebars", {
+        res.render("User/login", {
             title: "login Page",
             errorMassages: errors
         });
@@ -42,14 +41,15 @@ exports.authenticate = (req, res, next) => {
                 email: req.body.email
             })
             .then(user => {
+            
                 if (user) {
                     bcrypt.compare(req.body.password, user.password)
                         .then(hashVal => {
                             if (hashVal) {
                                 req.session.user = user;
-                                console.log(`${user.Admin}`);
-                                if(user.Admin){
-                                    res.redirect("/users/admin.handlebars");
+                                if(user.Admin === "true"){
+                                   
+                                    res.redirect("/users/admin");
                                 }
                                 else{
                                      res.redirect(`/users/dashboard`);
@@ -57,7 +57,7 @@ exports.authenticate = (req, res, next) => {
                                
                             } else {
                                 errors.push("Your username and/or password is incorrect");
-                                res.render("User/login.handlebars", {
+                                res.render("User/login", {
                                     title: "login Page",
                                     errorMassages: errors
                                 });
@@ -67,7 +67,7 @@ exports.authenticate = (req, res, next) => {
                         .catch(err => console.log(`Error : ${err}`));
                 } else {
                     errors.push("Your username and/or password is incorrect");
-                    res.render("User/login.handlebars", {
+                    res.render("User/login", {
                         title: "login Page",
                         errorMassages: errors
                     });

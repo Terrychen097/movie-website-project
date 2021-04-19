@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: "TerryChen",
     resave: false,
     saveUninitialized: true
   }))
@@ -49,7 +49,7 @@ const PORT =process.env.PORT;
 app.listen(process.env.PORT, () => {
 
     console.log(`Web Server is up and running on PORT ${PORT}`);
-    mongoose.connect(process.env.MONGO_DB_URL_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
+    mongoose.connect("mongodb+srv://terrychen:terrychen123@cluster0.riujx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true})
     .then(()=>{
         console.log(`Connected to MongoDB`)
 

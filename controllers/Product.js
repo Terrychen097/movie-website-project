@@ -25,13 +25,13 @@ router.get("/addCart/:id", (req, res) => {
         const cart = new cartModel(cartFilter);
         cart.save()
         .then(cart=>{
-            console.log(`1${cart.name}`)
+
 
             cartModel.find()
             .then(carts=>{
-                console.log(`2${carts.name}`)
+ 
                 const cartFilters = carts.map(cart=>{
-                    console.log(`3${cart.price}`)
+ 
                     return{
                         name : cart.name,
                         id : cart._id,

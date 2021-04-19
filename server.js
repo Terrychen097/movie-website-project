@@ -4,6 +4,7 @@ require('dotenv').config({ path: 'config/keys.env' });
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 const session = require('express-session');
+const fileUpload = require('express-fileupload');
 
 
 //import middleware
@@ -11,6 +12,7 @@ const generalController = require("./controllers/General.js");
 const userController = require("./controllers/User.js");
 const httpProcessing = require("./middleware/httpProcess.js");
 const authController = require("./controllers/Auth.js");
+const productController = require("./controllers/Product.js");
 
 const app = express();
 
@@ -20,7 +22,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({extended:false}));
-
+app.use(fileUpload());
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -37,10 +39,11 @@ app.use((req,res,next)=>{
 })
 
 
-app.use(httpProcessing);
-app.use("/",generalController);
-app.use("/users/",userController);
 
+app.use(httpProcessing);
+//app.use("/",generalController);
+app.use("/users/",userController);
+app.use("/products/",productController);
 app.use("/auth/",authController);
 
 

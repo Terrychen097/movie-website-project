@@ -3,12 +3,12 @@ const userModel = require("../models/User.js");
 
 exports.getAdminDashboard = (req,res,next)=>{
 
-    res.render("User/admin.handlebars");
+    res.render("User/admin");
 }
 
 exports.getUserDashboard = (req,res,next)=>{
 
-    res.render("User/dashboard.handlebars");
+    res.render("User/dashboard");
 
 }
 

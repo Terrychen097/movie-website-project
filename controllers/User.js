@@ -10,7 +10,7 @@ router.get("/admin/",authMiddleware.protectRoute,customizMiddleware.getAdminDash
 //route for regisration
 router.get("/register", (req, res) => {
 
-    res.render("User/registration.handlebars", {
+    res.render("User/registration", {
         title: "registration page"
     })
 
@@ -38,7 +38,7 @@ router.post("/register",(req, res) => {
     }
 
     if (errors.length > 0) {
-        res.render("User/registration.handlebars", {
+        res.render("User/registration", {
             title: "registration Page",
             errorMassages: errors
         });
@@ -88,11 +88,11 @@ router.get("/",(req,res)=>{
         return{
             id : user._id,
             name : user.name,
-            email : user.email
+            email : user.email,
+            password : user.password
         }
       });
-
-      res.render("User/list.handlebars",{
+      res.render("User/list",{
           filteredUsers         
       })
         
@@ -113,16 +113,16 @@ router.get("/:id",authMiddleware.protectRoute,(req,res)=>{
 
     .then(user=>{
 
-        const {id, name, email,phoneNu} = user;
+        const {id, name, email, password} = user;
 
         const filteredUser = {
                 id,
                 name,
                 email,
-                phoneNu
+                password
         }
 
-        res.render("User/update.handlebars",{
+        res.render("User/update",{
             filteredUser
         })
         
@@ -137,7 +137,7 @@ router.put("/:id",(req,res)=>{
         email : req.body.email,
         phoneNu : req.body.phoneNu,
         name : req.body.name,
-        password : req.body.password,
+        password : req.body.password
     }
 
     userModel.updateOne({_id: req.params.id},newUser)
@@ -149,7 +149,7 @@ router.put("/:id",(req,res)=>{
 
 
 //delete data
-router.delete("/:id",(req,res)=>{
+router.delete("/:id",authMiddleware.protectRoute,(req,res)=>{
 
     userModel.deleteOne({_id: req.params.id})
     .then(()=>{

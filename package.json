@@ -14,13 +14,14 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
     "express-handlebars": "^5.2.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.12.3",
+    "dotenv": "^8.2.0",
     "twilio": "^3.57.0"
   },
   "devDependencies": {
-    "dotenv": "^8.2.0",
     "nodemon": "^2.0.7"
   }
 }

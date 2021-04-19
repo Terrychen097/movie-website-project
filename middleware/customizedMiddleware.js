@@ -2,13 +2,19 @@ const { ExportCustomJobInstance } = require("twilio/lib/rest/bulkexports/v1/expo
 const userModel = require("../models/User.js");
 
 exports.getAdminDashboard = (req,res,next)=>{
+    userModel.findOne({
+        email :  req.body.email
+    })
+    .then(user=>{
+            res.render("User/admin");
+    })
+    .catch(err => console.log(`Error : ${err}`));
 
-    res.render("User/admin.handlebars");
 }
 
 exports.getUserDashboard = (req,res,next)=>{
 
-    res.render("User/dashboard.handlebars");
+    res.render("User/dashboard");
 
 }
 

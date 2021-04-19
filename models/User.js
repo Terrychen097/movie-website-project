@@ -33,7 +33,7 @@ const userSchema = new Schema({
     },
     Admin:
     {
-        type:Boolean,
+        type:String,
         default: false
     }
 });
